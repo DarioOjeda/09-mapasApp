@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
-import { environment } from '../../../../environments/environment';
+
 // Esto quiere decir toma toda esa librería de js y 
 // la vas a conocer como mapboxgl
 
@@ -19,12 +19,14 @@ export class FullScreenComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    (mapboxgl as any).accessToken = environment.mapBoxToken;
     
     var map = new mapboxgl.Map({
-    container: 'mapa',
-    style: 'mapbox://styles/mapbox/streets-v11'
-    });
+      container: 'mapa',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [-5.322671059976026, 36.34116260979489],
+      zoom: 17
+      });
   }
+
 
 }
