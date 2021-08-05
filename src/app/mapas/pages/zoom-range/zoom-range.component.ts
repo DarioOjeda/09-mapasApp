@@ -1,16 +1,59 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import * as mapboxgl from 'mapbox-gl';
 
 @Component({
   selector: 'app-zoom-range',
   templateUrl: './zoom-range.component.html',
-  styles: [
-  ]
+  styles: [`
+    .mapa-container {
+      height: 100%;
+      width: 100%;
+    }
+    .row {
+      background-color: white;
+      border-radius: 5px;
+      bottom: 50px;
+      left: 50px;
+      padding: 10px;
+      position: fixed;
+      z-index: 999;
+    }
+  `]
 })
-export class ZoomRangeComponent implements OnInit {
+export class ZoomRangeComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  @ViewChild('mapa') divMapa!: ElementRef;
+  mapa!: mapboxgl.Map;
+
+  constructor() { 
+    // console.log( 'Constructor',this.divMapa);
+    //Aquí no tiene valor, no lo puedo usar todavía
+  }
 
   ngOnInit(): void {
+    // console.log( 'OnInit',this.divMapa);
+    //Tampoco tiene valor, no lo puedo usar(undefined)
+    
+  }
+  ngAfterViewInit(): void {
+
+    console.log( 'afterViewInit',this.divMapa);
+
+    this.mapa = new mapboxgl.Map({
+      container: this.divMapa.nativeElement,
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [-5.322671059976026, 36.34116260979489],
+      zoom: 17
+      });
+  }
+
+  zoomOut() {
+    console.log( 'Zoomout',this.divMapa);
+    this.mapa.zoomOut();
+  }
+
+  zoomIn() {
+    this.mapa.zoomIn();
   }
 
 }
