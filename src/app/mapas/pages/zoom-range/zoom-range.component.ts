@@ -11,6 +11,7 @@ import * as mapboxgl from 'mapbox-gl';
     }
     .row {
       background-color: white;
+      width: 400px;
       border-radius: 5px;
       bottom: 50px;
       left: 50px;
@@ -49,6 +50,12 @@ export class ZoomRangeComponent implements OnInit, AfterViewInit {
       this.mapa.on('zoom', (ev) => {
         this.zoomLevel = this.mapa.getZoom();
       });
+
+      this.mapa.on('zoomend', (ev) => {
+        if ( this.mapa.getZoom() > 18){
+          this.mapa.zoomTo( 18 );
+        }
+      });
   }
 
   zoomOut() {
@@ -62,6 +69,10 @@ export class ZoomRangeComponent implements OnInit, AfterViewInit {
 
     this.zoomLevel = this.mapa.getZoom();
 
+  }
+
+  zoomCambio(valor: string) {
+    this.mapa.zoomTo(Number(valor));
   }
 
 }
