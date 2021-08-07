@@ -64,7 +64,7 @@ export class MarcadoresComponent implements AfterViewInit {
 
     const nuevoMarcador = new mapboxgl.Marker({
       draggable: true,
-      color
+      color,
     })
       .setLngLat( this.center )
       .addTo( this.mapa );
@@ -142,7 +142,7 @@ export class MarcadoresComponent implements AfterViewInit {
     this.marcadores[indice].marker?.remove();
 
     this.marcadores.splice(indice, 1);
-    
+
     this.guardarMarcadoresLocalStorage();
   }
 }
