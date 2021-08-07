@@ -5,9 +5,18 @@ import * as mapboxgl from 'mapbox-gl';
   selector: 'app-marcadores',
   templateUrl: './marcadores.component.html',
   styles: [`
-  .mapa-container {
-      height: 100%;
-      width: 100%;
+    .mapa-container {
+        height: 100%;
+        width: 100%;
+      }
+    .list-group {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+    li {
+      cursor: pointer;
     }
   `]
 })
@@ -31,8 +40,24 @@ export class MarcadoresComponent implements AfterViewInit {
       //   element: markerHtml
       // }).setLngLat.....
 
-      new mapboxgl.Marker().setLngLat( this.center )
-        .addTo(this.mapa );
+      // new mapboxgl.Marker().setLngLat( this.center )
+      //   .addTo(this.mapa );
+
+
   }
 
+  agregarMarcador() {
+    const nuevoMarcador = new mapboxgl.Marker({
+      draggable: true
+    })
+      .setLngLat( this.center )
+      .addTo( this.mapa );
+
+
+
+  }
+
+  irMarcador() {
+
+  }
 }
